@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FikXzMods Portofolio</title>
+  <meta name="description" content="Portofolio resmi FikXzMods — menampilkan project, layanan, dan karya terbaik dalam dunia pengembangan web, bot, dan teknologi.">
+  <meta name="keywords" content="Portofolio Aing ngga pnting">
+  <meta name="author" content="FikXzMods">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="FikXzMods Portofolio" />
+  <meta property="og:description" content="Gak tau Ah" />
+  <meta property="og:image" content="https://fikxzmods.site/logo.png" />
+  <meta property="og:url" content="https://fikxzmods.site" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FikXzMods Portofolio">
+  <meta name="twitter:description" content="Lihat proyek & karya FikXzMods di dunia teknologi dan bot.">
+  <meta name="twitter:image" content="https://fikxzmods.site/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: url('https://files.catbox.moe/7qq6oa.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        body.light-mode {
+            color: #333;
+        }
+
+        body.light-mode::before {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        body.light-mode .card {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 1px rgba(255, 71, 87, 0.6), 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .card-fullname {
+            background: linear-gradient(135deg, #e63946, #f76c6c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light-mode .card-jobtitle,
+        body.light-mode .card-text,
+        body.light-mode .card-item-desc,
+        body.light-mode .card-contact,
+        body.light-mode .card-contact svg {
+            color: #333;
+        }
+
+        body.light-mode .card-buttons button {
+            color: #444;
+        }
+
+        body.light-mode .card-buttons button.is-active,
+        body.light-mode .card-buttons button:hover {
+            color: #e63946;
+            border-bottom: 4px solid #e63946;
+        }
+
+        body.light-mode .project-card,
+        body.light-mode .card-contact:hover {
+            background: rgba(255, 71, 87, 0.1);
+        }
+
+        .card {
+            max-width: 420px;
+            width: 100%;
+            margin: auto;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            border-radius: 24px;
+            box-shadow: 0 0 0 1px rgba(255, 71, 87, 0.6), 0 20px 40px rgba(255, 71, 87, 0.3);
+            animation: cardAppear 0.8s ease-out;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card[data-state="#about"] {
+            min-height: 500px;
+        }
+
+        .card[data-state="#progress"] {
+            min-height: 550px;
+        }
+
+        .card[data-state="#projects"] {
+            min-height: 450px;
+        }
+
+        .card[data-state="#contact"] {
+            min-height: 480px;
+        }
+
+        .card.is-active .card-header {
+            height: 90px;
+        }
+
+        .card.is-active .card-cover {
+            height: 110px;
+            top: -55px;
+        }
+
+        .card.is-active .card-avatar {
+            transform: none;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            bottom: 15px;
+        }
+
+        .card.is-active .card-fullname,
+        .card.is-active .card-jobtitle {
+            left: 90px;
+            transform: none;
+        }
+
+        .card.is-active .card-fullname {
+            bottom: 25px;
+            font-size: 20px;
+        }
+
+        .card.is-active .card-jobtitle {
+            bottom: 8px;
+            font-size: 12px;
+        }
+
+        .card-header {
+            position: relative;
+            display: flex;
+            height: 240px;
+            flex-shrink: 0;
+            width: 100%;
+            transition: height 0.3s ease;
+        }
+
+        .card-header * {
+            transition: all 0.3s ease;
+        }
+
+        .card-cover {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            height: 200px;
+            top: -10%;
+            left: 0;
+            background: url('https://files.catbox.moe/7qq6oa.png') center center;
+            background-size: cover;
+            filter: blur(8px);
+            transform: scale(1.1);
+        }
+
+        .card-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-60px);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5);
+        }
+
+        .card-fullname {
+            position: absolute;
+            bottom: 0;
+            font-size: 26px;
+            font-weight: 800;
+            text-align: center;
+            white-space: nowrap;
+            transform: translateY(-15px) translateX(-50%);
+            left: 50%;
+            background: linear-gradient(135deg, #ff4757, #ff6b7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-jobtitle {
+            position: absolute;
+            bottom: 0;
+            font-size: 14px;
+            white-space: nowrap;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-main {
+            position: relative;
+            flex: 1;
+            display: flex;
+            padding-top: 10px;
+            flex-direction: column;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .card-subtitle {
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #ff4757;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .card-text {
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            margin: 0;
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+        }
+
+        .card-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            gap: 18px;
+        }
+
+        .card-social a {
+            color: #fff;
+            height: 44px;
+            width: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 71, 87, 0.3);
+            border: 1px solid rgba(255, 71, 87, 0.5);
+            font-size: 18px;
+        }
+
+        .card-social a:hover {
+            background: rgba(255, 71, 87, 0.6);
+            transform: translateY(-4px) scale(1.15);
+            box-shadow: 0 12px 24px rgba(255, 71, 87, 0.4);
+        }
+
+        .card-buttons {
+            display: flex;
+            background: rgba(255, 71, 87, 0.15);
+            margin-top: auto;
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            backdrop-filter: blur(10px);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .card-buttons button {
+            flex: 1 1 auto;
+            user-select: none;
+            background: transparent;
+            font-size: 13px;
+            border: 0;
+            padding: 16px 5px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+            outline: none;
+            border-bottom: 4px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            touch-action: manipulation;
+            transition: all 0.3s ease;
+        }
+
+        .card-buttons button.is-active,
+        .card-buttons button:hover {
+            color: #fff;
+            border-bottom: 4px solid #ff4757;
+            background: linear-gradient(to bottom, rgba(255, 71, 87, 0) 0%, rgba(255, 71, 87, 0.25) 100%);
+        }
+
+        .card-section {
+            display: none;
+        }
+
+        .card-section.is-active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-timeline {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .card-timeline:after {
+            background: linear-gradient(to bottom, #ff4757, #ff6b7a);
+            content: "";
+            left: 42px;
+            width: 3px;
+            top: 0;
+            height: 100%;
+            position: absolute;
+        }
+
+        .card-item {
+            position: relative;
+            padding-left: 60px;
+            padding-right: 20px;
+            padding-bottom: 25px;
+            z-index: 1;
+        }
+
+        .card-item:last-child {
+            padding-bottom: 5px;
+        }
+
+        .card-item:after {
+            content: attr(data-year);
+            position: absolute;
+            top: 0;
+            left: 37px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #fff;
+            font-size: 11px;
+            text-indent: -35px;
+            border-radius: 50%;
+            color: #ff4757;
+            background: linear-gradient(to bottom, #ff6b7a, #ff4757);
+            font-weight: bold;
+        }
+
+        .card-item-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .card-item-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            font-family: "Inter", sans-serif;
+        }
+
+        .card-contact-wrapper {
+            margin-top: 20px;
+        }
+
+        .card-contact {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card-contact:hover {
+            background: rgba(255, 71, 87, 0.15);
+            color: #fff;
+        }
+
+        .card-contact + .card-contact {
+            margin-top: 12px;
+        }
+
+        .card-contact svg {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+            color: #ff4757;
+        }
+
+        .contact-me {
+            border: 0;
+            outline: none;
+            background: linear-gradient(135deg, #ff4757, #ff6b7a);
+            box-shadow: 0 8px 16px rgba(255, 71, 87, 0.3);
+            color: #fff;
+            padding: 14px 20px;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: "Inter", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-me:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(255, 71, 87, 0.5);
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card-contact:hover,
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(255, 71, 87, 0.3);
+            border-color: rgba(255, 71, 87, 0.5);
+        }
+
+        .project-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ff4757;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-family: "Inter", sans-serif;
+            font-size: 14px;
+        }
+
+        .card::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .card::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+
+        .card::-webkit-scrollbar-thumb {
+            background: rgba(255, 71, 87, 0.7);
+            border-radius: 4px;
+        }
+
+        .card::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 71, 87, 0.9);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 71, 87, 0.3);
+            border: 1px solid rgba(255, 71, 87, 0.5);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 71, 87, 0.6);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255, 71, 87, 0.3);
+            border: 1px solid rgba(255, 71, 87, 0.5);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            background: rgba(255, 71, 87, 0.6);
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top i {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            border: 6px solid rgba(255, 71, 87, 0.3);
+            border-top: 6px solid #ff4757;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                max-width: 360px;
+            }
+
+            .card-content {
+                padding: 15px;
+            }
+
+            .card-avatar {
+                width: 110px;
+                height: 110px;
+            }
+
+            .card-fullname {
+                font-size: 22px;
+            }
+
+            .card-jobtitle {
+                font-size: 12px;
+            }
+
+            .card-buttons button {
+                font-size: 12px;
+                padding: 14px 4px;
+            }
+
+            .theme-toggle,
+            .scroll-to-top {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                max-width: 100%;
+                margin: 10px;
+                border-radius: 20px;
+            }
+
+            .card-header {
+                height: 200px;
+            }
+
+            .card-avatar {
+                width: 90px;
+                height: 90px;
+            }
+
+            .card-fullname {
+                font-size: 18px;
+            }
+
+            .card-jobtitle {
+                font-size: 11px;
+            }
+
+            .card-social a {
+                height: 40px;
+                width: 40px;
+                font-size: 16px;
+            }
+
+            .card-buttons button {
+                font-size: 11px;
+                padding: 12px 3px;
+            }
+
+            .theme-toggle,
+            .scroll-to-top {
+                width: 38px;
+                height: 38px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .scroll-to-top {
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card[data-state="#about"] {
+                min-height: 460px;
+            }
+
+            .card[data-state="#progress"] {
+                min-height: 510px;
+            }
+
+            .card[data-state="#projects"] {
+                min-height: 410px;
+            }
+
+            .card[data-state="#contact"] {
+                min-height: 440px;
+            }
+        }
+  </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="theme-toggle" title="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="scroll-to-top" title="Scroll to Top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <div class="card" data-state="#about">
+        <div class="card-header">
+            <div class="card-cover"></div>
+            <img class="card-avatar" src="https://files.catbox.moe/0c5kvy.jpg" alt="avatar" />
+            <h1 class="card-fullname">FikXzMods</h1>
+            <h2 class="card-jobtitle">Pelajar</h2>
+        </div>
+        
+        <div class="card-main">
+            <div class="card-section is-active" id="about">
+                <div class="card-content">
+                    <div class="card-subtitle">About Me</div>
+                    <p class="card-text">
+                        Orang Gabut Yang menjalani Hidup Yang Sangat membosankan😹.
+                    </p>
+                </div>
+                <div class="card-social">
+                    <a href="https://wa.me/628973965618" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VbBPPG52f3EFT7ldeT0m" target="_blank">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </a>
+                    <a href="https://github.com/Kuroxel" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:f1kstore.gamil.1@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-section" id="progress">
+                <div class="card-content">
+                    <div class="card-subtitle">Progress Timeline</div>
+                    <div class="card-timeline">
+                        <div class="card-item" data-year="2025">
+                            <div class="card-item-title">School</div>
+                            <div class="card-item-desc">
+                                Menjalani Sekolah Yang Sangat Membosankan.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-section" id="projects">
+                <div class="card-content">
+                    <div class="card-subtitle">My Projects</div>
+                    <div class="project-card">
+                        <div class="project-title">Portfolio Website</div>
+                        <div class="project-desc">
+                            Website portfolio simple yang dibuat menggunakan HTML, CSS, dan JavaScript. 
+                            Menampilkan informasi personal, progress timeline, dan kontak dengan design modern.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-section" id="contact">
+                <div class="card-content">
+                    <div class="card-subtitle">Get In Touch</div>
+                    <div class="card-contact-wrapper">
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            Konoha, tempat sarang koruptor
+                        </div>
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            08973965618
+                        </div>
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6L12 13L2 6"/>
+                            </svg>
+                            f1kstore.gamil.1@gmail.com
+                        </div>
+                        <a href="https://wa.me/628973965618" target="_blank">
+                            <button class="contact-me">Contact Me</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-buttons">
+                <button data-section="#about" class="is-active">Home</button>
+                <button data-section="#progress">Progress</button>
+                <button data-section="#projects">Projects</button>
+                <button data-section="#contact">Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://files.catbox.moe/yibdqq.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const buttons = document.querySelectorAll(".card-buttons button");
+        const sections = document.querySelectorAll(".card-section");
+        const card = document.querySelector(".card");
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const scrollToTop = document.querySelector('.scroll-to-top');
+        const loader = document.querySelector('.loader');
+        let musicStarted = false;
+        let isNavigating = false;
+
+        // Navigation handling
+        const handleButtonClick = (e) => {
+            if (isNavigating || e.target.classList.contains('is-active')) return;
+
+            isNavigating = true;
+            const targetSection = e.target.getAttribute("data-section");
+            const section = document.querySelector(targetSection);
+
+            // Smooth transition
+            card.classList.remove("is-active");
+            sections.forEach(s => s.classList.remove("is-active"));
+            buttons.forEach(b => b.classList.remove("is-active"));
+
+            setTimeout(() => {
+                card.classList.toggle("is-active", targetSection !== "#about");
+                card.setAttribute("data-state", targetSection);
+                e.target.classList.add("is-active");
+                section.classList.add("is-active");
+                isNavigating = false;
+            }, 100);
+        };
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", handleButtonClick);
+            btn.addEventListener("touchstart", handleButtonClick, { passive: true });
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.innerHTML = document.body.classList.contains('light-mode')
+                ? '<i class="fas fa-moon"></i>'
+                : '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        // Scroll to top
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Show/hide scroll-to-top button
+        window.addEventListener('scroll', () => {
+            scrollToTop.classList.toggle('show', window.scrollY > 150);
+        });
+
+        // Hide loader after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 600);
+        });
+
+        // Music handling
+        backgroundMusic.volume = 0.3;
+
+        // Play music on first interaction
+        const playMusicOnInteraction = (e) => {
+            if (!musicStarted && e.target.closest('.contact-me, .card-buttons, .card-social')) {
+                backgroundMusic.play().then(() => {
+                    musicStarted = true;
+                    console.log('Music started');
+                }).catch(e => console.log('Music play failed:', e));
+                document.removeEventListener('click', playMusicOnInteraction);
+                document.removeEventListener('touchstart', playMusicOnInteraction);
+            }
+        };
+
+        document.addEventListener('click', playMusicOnInteraction);
+        document.addEventListener('touchstart', playMusicOnInteraction, { passive: true });
+
+        // Continue music on visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && musicStarted) {
+                backgroundMusic.play().catch(e => console.log('Music resume failed:', e));
+            }
+        });
+
+        // Prevent text selection
+        card.addEventListener('selectstart', (e) => e.preventDefault());
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (isNavigating) return;
+            const activeIndex = Array.from(buttons).findIndex(b => b.classList.contains('is-active'));
+            if (e.key === 'ArrowRight' && activeIndex < buttons.length - 1) {
+                buttons[activeIndex + 1].click();
+            } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
+                buttons[activeIndex - 1].click();
+            }
+        });
+    </script>
+</body>
+</html>
