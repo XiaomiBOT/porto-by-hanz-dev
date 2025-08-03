@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Reseller Panel | FikXzMods</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="data:application/manifest+json,{"name":"ResellerPanel","short_name":"Panel","display":"standalone","start_url":"/","theme_color":"#007bff","background_color":"#fff"}">
+  <meta name="theme-color" content="#007bff"/>
+
+  <style>
+    *{box-sizing:border-box;font-family:Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+    body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#f4f4f4;color:#333}
+    .card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);width:100%;max-width:420px;padding:28px 32px}
+    h2{text-align:center;margin:0 0 24px;font-weight:600}
+    label{font-size:.9rem;font-weight:600;margin-bottom:4px;display:block}
+    input,select{width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:16px;margin-bottom:14px}
+    button{width:100%;padding:12px;border:none;border-radius:8px;background:#007bff;color:#fff;font-size:16px;cursor:pointer;transition:.2s}
+    button:disabled{background:#888}
+    .hidden{display:none}
+    .msg{padding:10px;border-radius:6px;margin-bottom:14px;font-size:.9rem}
+    .error{background:#ffebee;color:#c62828}
+    .success{background:#e8f5e9;color:#2e7d32}
+    .fade{animation:fade .4s}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="login" class="card">
+  <h2>Login Reseller</h2>
+  <form id="loginForm">
+    <label>Username</label>
+    <input id="user" required autocomplete="username"/>
+    <label>Password</label>
+    <input id="pass" type="password" required autocomplete="current-password"/>
+    <button type="submit">Masuk</button>
+    <div id="loginMsg" class="msg hidden"></div>
+  </form>
+</section>
+
+<!-- CREATE PANEL -->
+<section id="creator" class="card hidden">
+  <h2>Create Panel</h2>
+  <label>Username Panel</label>
+  <input id="panelUser" placeholder="Masukkan username..." required/>
+  <label>Paket RAM</label>
+  <select id="paket">
+    <option value="">-- Pilih Paket --</option>
+    <option value="1gb">1GB</option><option value="2gb">2GB</option>
+    <option value="3gb">3GB</option><option value="4gb">4GB</option>
+    <option value="5gb">5GB</option><option value="6gb">6GB</option>
+    <option value="7gb">7GB</option><option value="8gb">8GB</option>
+    <option value="9gb">9GB</option><option value="10gb">10GB</option>
+    <option value="unli">Unlimited</option>
+  </select>
+  <button id="createBtn">Buat Panel</button>
+  <div id="creatorMsg" class="msg hidden"></div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="card hidden">
+  <h3>Panel Berhasil Dibuat!</h3>
+  <div class="info-box" style="font-size:.9rem;line-height:1.5">
+    <p><b>Email:</b> <span id="email"></span></p>
+    <p><b>Username:</b> <span id="uname"></span></p>
+    <p><b>Password:</b> <span id="pwd"></span></p>
+    <p><b>Link Login:</b> <a href="#" id="loginLink" target="_blank">Klik di sini</a></p>
+    <p><b>Paket RAM:</b> <span id="ram"></span></p>
+  </div>
+  <button onclick="resetAll()">Buat Lagi</button>
+</section>
+
+<script>
+/* ========= CONFIG (taken from Vercel env) ========= */
+const CFG = {
+  // In Vercel set:
+  //   DOMAIN=https://galangcoganprivate.syahxkenny.my.id
+  //   PLTA=ptla_gqU9CSgWIQS1yBacXysOFYK1Sr4cRDxsrM3iBhPLFiw
+  //   TG_BOT=7748684400:AAFJvQ2ReUcLpgN1K5pm__G48jq7imJ0wBk
+  //   TG_GRP=-1002899595034
+  DOMAIN: import.meta.env?.DOMAIN || "https://galangcoganprivate.syahxkenny.my.id",
+  PLTA:   import.meta.env?.PLTA   || "ptla_gqU9CSgWIQS1yBacXysOFYK1Sr4cRDxsrM3iBhPLFiw",
+  TG_BOT: import.meta.env?.TG_BOT || "7748684400:AAFJvQ2ReUcLpgN1K5pm__G48jq7imJ0wBk",
+  TG_GRP: import.meta.env?.TG_GRP || "-1002899595034"
+};
+
+/* ---------- Ambil user/pw dari env ---------- */
+function getUsersFromEnv() {
+  const users = {};
+  Object.keys(import.meta.env || {})
+    .filter(k => k.startsWith('user_'))
+    .forEach(k => {
+      const username = k.slice(5);        // hilangkan "USER_" di depan
+      users[username] = import.meta.env[k];
+    });
+  return users;
+}
+
+const USERS = getUsersFromEnv();
+
+
+const PAKET = {
+  "1gb":  { ram: 1000, disk: 1000, cpu: 40 },
+  "2gb":  { ram: 2000, disk: 1000, cpu: 60 },
+  "3gb":  { ram: 3000, disk: 2000, cpu: 80 },
+  "4gb":  { ram: 4000, disk: 2000, cpu: 100 },
+  "5gb":  { ram: 5000, disk: 3000, cpu: 120 },
+  "6gb":  { ram: 6000, disk: 3000, cpu: 140 },
+  "7gb":  { ram: 7000, disk: 4000, cpu: 160 },
+  "8gb":  { ram: 8000, disk: 4000, cpu: 180 },
+  "9gb":  { ram: 9000, disk: 5000, cpu: 200 },
+  "10gb": { ram: 10000, disk: 5000, cpu: 220 },
+  "unli": { ram: 0, disk: 0, cpu: 0 }
+};
+
+/* ---------- Helpers ---------- */
+function $(id){return document.getElementById(id)}
+function show(el){el.classList.remove('hidden')}
+function hide(el){el.classList.add('hidden')}
+function msg(el,text,type){
+  el.textContent=text;el.className='msg '+type;show(el);
+  setTimeout(()=>hide(el),4000);
+}
+
+/* ---------- Login ---------- */
+$("loginForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const u=$("user").value.trim(),p=$("pass").value.trim();
+  if(USERS[u]===p){
+    hide($("login"));show($("creator"));
+  }else msg($("loginMsg"),"Username / Password salah","error");
+});
+
+/* ---------- Create Panel ---------- */
+$("createBtn").onclick = async () => {
+  const user=$("panelUser").value.trim(),pkg=$("paket").value;
+  if(!user||!pkg) return msg($("creatorMsg"),"Lengkapi data!","error");
+
+  const btn=$("createBtn");
+  btn.disabled=true;btn.textContent="Membuat…";
+
+  const cfg=PAKET[pkg];
+  const url=`https://api.nvidiabotz.xyz/pterodactyl/addpanel`+
+            `?domain=${encodeURIComponent(CFG.DOMAIN)}`+
+            `&plta=${encodeURIComponent(CFG.PLTA)}`+
+            `&username=${encodeURIComponent(user)}`+
+            `&disk=${cfg.disk}&cpu=${cfg.cpu}&memory=${cfg.ram}`;
+
+  try{
+    const r=await fetch(url);
+    const d=await r.json();
+    if(!r.ok||!d.user?.attributes) throw d.message||d.error||JSON.stringify(d);
+
+    // Fill result
+    $("email").textContent=d.user.attributes.email;
+    $("uname").textContent=d.user.attributes.username;
+    $("pwd").textContent=d.user.attributes.username;
+    $("ram").textContent=pkg.toUpperCase();
+    $("loginLink").href=CFG.DOMAIN;
+
+    // Telegram log
+    const text=`🚀 Panel Baru\nUser: ${user}\nPaket: ${pkg.toUpperCase()}\nEmail: ${d.user.attributes.email}`;
+    await fetch(`https://api.telegram.org/bot${CFG.TG_BOT}/sendMessage`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({chat_id:CFG.TG_GRP,text})
+    });
+
+    hide($("creator"));show($("result"));
+  }catch(err){
+    msg($("creatorMsg"),err,"error");
+  }finally{btn.disabled=false;btn.textContent="Buat Panel";}
+};
+
+/* ---------- Reset ---------- */
+function resetAll(){
+  hide($("result"));show($("creator"));
+  $("panelUser").value="";$("paket").value="";
+}
+
+/* ---------- PWA service worker (optional) ---------- */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("data:text/javascript,console.log('sw')");
+}
+</script>
+</body>
+</html>
