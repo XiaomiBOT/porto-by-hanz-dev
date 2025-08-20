@@ -32,7 +32,7 @@
             content: '';
             position: fixed;
             top: 0;
-            left: 0;#000000
+            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
@@ -52,7 +52,7 @@
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             flex-direction: column;
             border-radius: 20px;
-            box-shadow: 0 0 0 1px rgba(255, 71, 87, 0.3), 0 30px 60px rgba(255, 71, 87, 0.2);
+            box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3), 0 30px 60px rgba(0, 123, 255, 0.2);
             animation: cardAppear 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -69,54 +69,17 @@
             }
         }
 
-        .card[data-state="#about"] {
-            height: 500px;
-        }
+        .card[data-state="#about"] { height: 500px; }
+        .card[data-state="#progress"] { height: 550px; }
+        .card[data-state="#projects"] { height: 450px; }
+        .card[data-state="#contact"] { height: 480px; }
 
-        .card[data-state="#progress"] {
-            height: 550px;
-        }
-
-        .card[data-state="#projects"] {
-            height: 450px;
-        }
-
-        .card[data-state="#contact"] {
-            height: 480px;
-        }
-
-        .card.is-active .card-header {
-            height: 80px;
-        }
-
-        .card.is-active .card-cover {
-            height: 100px;
-            top: -50px;
-        }
-
-        .card.is-active .card-avatar {
-            transform: none;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            bottom: 15px;
-        }
-
-        .card.is-active .card-fullname,
-        .card.is-active .card-jobtitle {
-            left: 85px;
-            transform: none;
-        }
-
-        .card.is-active .card-fullname {
-            bottom: 25px;
-            font-size: 18px;
-        }
-
-        .card.is-active .card-jobtitle {
-            bottom: 8px;
-            font-size: 10px;
-        }
+        .card.is-active .card-header { height: 80px; }
+        .card.is-active .card-cover { height: 100px; top: -50px; }
+        .card.is-active .card-avatar { transform: none; left: 20px; width: 50px; height: 50px; bottom: 15px; }
+        .card.is-active .card-fullname, .card.is-active .card-jobtitle { left: 85px; transform: none; }
+        .card.is-active .card-fullname { bottom: 25px; font-size: 18px; }
+        .card.is-active .card-jobtitle { bottom: 8px; font-size: 10px; }
 
         .card-header {
             position: relative;
@@ -127,9 +90,7 @@
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .card-header * {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+        .card-header * { transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
 
         .card-cover {
             width: 100%;
@@ -155,7 +116,7 @@
             left: 50%;
             transform: translateX(-50%) translateY(-60px);
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4);
         }
 
         .card-fullname {
@@ -167,7 +128,7 @@
             white-space: nowrap;
             transform: translateY(-15px) translateX(-50%);
             left: 50%;
-            background: linear-gradient(135deg, #ff4757, #ff6b7a);
+            background: linear-gradient(135deg, #007bff, #4dabf7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -205,7 +166,7 @@
             font-weight: 700;
             font-size: 14px;
             margin-bottom: 15px;
-            color: #ff4757;
+            color: #007bff;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -237,20 +198,20 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            background: rgba(255, 71, 87, 0.2);
-            border: 1px solid rgba(255, 71, 87, 0.3);
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid rgba(0, 123, 255, 0.3);
             font-size: 16px;
         }
 
         .card-social a:hover {
-            background: rgba(255, 71, 87, 0.4);
+            background: rgba(0, 123, 255, 0.4);
             transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
         }
 
         .card-buttons {
             display: flex;
-            background: rgba(255, 71, 87, 0.1);
+            background: rgba(0, 123, 255, 0.1);
             margin-top: auto;
             position: sticky;
             bottom: 0;
@@ -279,8 +240,8 @@
         .card-buttons button.is-active,
         .card-buttons button:hover {
             color: #fff;
-            border-bottom: 3px solid #ff4757;
-            background: linear-gradient(to bottom, rgba(255, 71, 87, 0) 0%, rgba(255, 71, 87, 0.2) 100%);
+            border-bottom: 3px solid #007bff;
+            background: linear-gradient(to bottom, rgba(0, 123, 255, 0) 0%, rgba(0, 123, 255, 0.2) 100%);
         }
 
         .card-section {
@@ -309,7 +270,7 @@
         }
 
         .card-timeline:after {
-            background: linear-gradient(to bottom, #ff4757, #ff6b7a, #c44569);
+            background: linear-gradient(to bottom, #007bff, #4dabf7, #1864ab);
             content: "";
             left: 42px;
             width: 2px;
@@ -341,8 +302,8 @@
             font-size: 10px;
             text-indent: -35px;
             border-radius: 50%;
-            color: #ff4757;
-            background: linear-gradient(to bottom, #ff6b7a, #ff4757);
+            color: #007bff;
+            background: linear-gradient(to bottom, #4dabf7, #007bff);
             font-weight: bold;
         }
 
@@ -378,7 +339,7 @@
         }
 
         .card-contact:hover {
-            background: rgba(255, 71, 87, 0.1);
+            background: rgba(0, 123, 255, 0.1);
             color: #fff;
         }
 
@@ -392,14 +353,14 @@
             height: 20px;
             margin-right: 12px;
             transition: 0.3s;
-            color: #ff4757;
+            color: #007bff;
         }
 
         .contact-me {
             border: 0;
             outline: none;
-            background: linear-gradient(135deg, #ff4757, #ff6b7a);
-            box-shadow: 0 8px 16px rgba(255, 71, 87, 0.3);
+            background: linear-gradient(135deg, #007bff, #4dabf7);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
             color: #fff;
             padding: 12px 20px;
             width: 100%;
@@ -416,12 +377,12 @@
 
         .contact-me:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 12px 24px rgba(0, 123, 255, 0.4);
         }
 
         .project-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 71, 87, 0.2);
+            border: 1px solid rgba(0, 123, 255, 0.2);
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 15px;
@@ -430,14 +391,14 @@
 
         .project-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.2);
-            border-color: rgba(255, 71, 87, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.4);
         }
 
         .project-title {
             font-size: 16px;
             font-weight: 600;
-            color: #ff4757;
+            color: #007bff;
             margin-bottom: 8px;
         }
 
@@ -458,12 +419,160 @@
         }
 
         .card::-webkit-scrollbar-thumb {
-            background: rgba(255, 71, 87, 0.6);
+            background: rgba(0, 123, 255, 0.6);
             border-radius: 3px;
         }
 
         .card::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 71, 87, 0.8);
+            background: rgba(0, 123, 255, 0.8);
+        }
+
+        /* Enhanced Pop-up Welcome Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: popupFadeIn 0.8s ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes popupFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: rgba(0, 123, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 20px;
+            padding: 50px 60px;
+            text-align: center;
+            animation: popupScaleRotate 0.8s ease-in-out;
+            box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3), 0 30px 60px rgba(0, 123, 255, 0.2);
+            transform-origin: center;
+        }
+
+        @keyframes popupScaleRotate {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .typing-container {
+            margin-bottom: 20px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-text {
+            font-size: 36px;
+            font-weight: 700;
+            color: #007bff;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #007bff;
+            animation: typing 1.5s steps(7, end), blink-caret 0.75s step-end infinite;
+            max-width: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes typing {
+            0% { max-width: 0; }
+            100% { max-width: 7ch; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #007bff; }
+        }
+
+        .welcome-sub {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideInFromBottom 1s ease-in-out 1.5s forwards, pulse 2s ease-in-out 2.5s infinite;
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .popup-btn {
+            background: linear-gradient(135deg, #007bff, #4dabf7);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: bounceIn 1s ease-in-out 2.5s forwards, float 3s ease-in-out infinite;
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(100px);
+            }
+            50% {
+                transform: scale(1.1) translateY(-10px);
+            }
+            70% {
+                transform: scale(0.9) translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .popup-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
+            background: linear-gradient(135deg, #4dabf7, #007bff);
+        }
+
+        .popup-btn:active {
+            transform: translateY(0) scale(0.95);
         }
 
         @media (max-width: 768px) {
@@ -483,10 +592,65 @@
             .card-fullname {
                 font-size: 20px;
             }
+
+            .popup-content {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            .typing-text {
+                font-size: 28px;
+            }
+
+            .welcome-sub {
+                font-size: 16px;
+            }
+        }
+
+        /* Smooth exit animations */
+        .popup-exit {
+            animation: popupExit 0.6s ease-in-out forwards;
+        }
+
+        @keyframes popupExit {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3) rotate(10deg);
+            }
+        }
+
+        .popup-content-exit {
+            animation: popupContentExit 0.6s ease-in-out forwards;
+        }
+
+        @keyframes popupContentExit {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) rotate(180deg);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Enhanced Pop-up Welcome -->
+    <div class="popup-overlay" id="popupWelcome">
+        <div class="popup-content">
+            <div class="typing-container">
+                <div class="typing-text">Welcome</div>
+            </div>
+            <p class="welcome-sub">selamat datang di portofolio aing</p>
+            <button class="popup-btn" onclick="closePopup()">oke</button>
+        </div>
+    </div>
+
     <div class="card" data-state="#about">
         <div class="card-header">
             <div class="card-cover"></div>
@@ -528,7 +692,6 @@
                             <div class="card-item-desc">
                                 Memulai perjalanan sebagai rakyat biasa yang ingin kehidupan santai dan tenang.
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -588,8 +751,8 @@
     </div>
 
     <audio id="backgroundMusic" loop>
-    <source src="https://cdn.jsdelivr.net/gh/FikXzModzDeveloper/Public@main/Wh0B.mp3" type="audio/mpeg">
-</audio>
+        <source src="https://cdn.jsdelivr.net/gh/FikXzModzDeveloper/Public@main/Wh0B.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         const buttons = document.querySelectorAll(".card-buttons button");
@@ -598,6 +761,32 @@
         const backgroundMusic = document.getElementById('backgroundMusic');
         let musicStarted = false;
 
+        // Enhanced close popup function with smooth animations
+        function closePopup() {
+            const popup = document.getElementById('popupWelcome');
+            const popupContent = document.querySelector('.popup-content');
+            
+            // Add exit animations
+            popup.classList.add('popup-exit');
+            popupContent.classList.add('popup-content-exit');
+            
+            // Auto-play music when popup closes
+            if (!musicStarted) {
+                backgroundMusic.play()
+                    .then(() => {
+                        musicStarted = true;
+                        console.log('Music started successfully');
+                    })
+                    .catch(e => console.log('Music play failed:', e));
+            }
+            
+            // Remove popup after animation
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 600);
+        }
+
+        // Handle button clicks
         const handleButtonClick = e => {
             const targetSection = e.target.getAttribute("data-section");
             const section = document.querySelector(targetSection);
@@ -625,6 +814,16 @@
         });
 
         backgroundMusic.volume = 0.3;
+
+        // Add keyboard support for popup
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const popup = document.getElementById('popupWelcome');
+                if (popup.style.display !== 'none') {
+                    closePopup();
+                }
+            }
+        });
     </script>
 </body>
 </html>
