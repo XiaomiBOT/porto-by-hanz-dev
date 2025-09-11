@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-
+        *:focus {
+            outline: none;
+        }
         body {
             font-family: "Jost", sans-serif;
             background: url('https://cdn.jsdelivr.net/gh/FikXzModzDeveloper/Public@main/mLK.jpg') center center;
@@ -27,7 +29,6 @@
             padding: 20px;
             color: #fff;
         }
-
         body::before {
             content: '';
             position: fixed;
@@ -38,7 +39,6 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: -1;
         }
-
         .card {
             max-width: 380px;
             margin: auto;
@@ -55,7 +55,6 @@
             box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3), 0 30px 60px rgba(0, 123, 255, 0.2);
             animation: cardAppear 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         @keyframes cardAppear {
             0% {
                 opacity: 0;
@@ -68,19 +67,16 @@
                 filter: blur(0);
             }
         }
-
-        .card[data-state="#about"] { height: 500px; }
+        .card[data-state="#about"] { height: 580px; }
         .card[data-state="#progress"] { height: 550px; }
         .card[data-state="#projects"] { height: 450px; }
         .card[data-state="#contact"] { height: 480px; }
-
         .card.is-active .card-header { height: 80px; }
         .card.is-active .card-cover { height: 100px; top: -50px; }
         .card.is-active .card-avatar { transform: none; left: 20px; width: 50px; height: 50px; bottom: 15px; }
         .card.is-active .card-fullname, .card.is-active .card-jobtitle { left: 85px; transform: none; }
         .card.is-active .card-fullname { bottom: 25px; font-size: 18px; }
         .card.is-active .card-jobtitle { bottom: 8px; font-size: 10px; }
-
         .card-header {
             position: relative;
             display: flex;
@@ -89,9 +85,7 @@
             width: 100%;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
         .card-header * { transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
-
         .card-cover {
             width: 100%;
             height: 100%;
@@ -105,7 +99,6 @@
             transform: scale(1.1);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
         .card-avatar {
             width: 120px;
             height: 120px;
@@ -118,7 +111,6 @@
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4);
         }
-
         .card-fullname {
             position: absolute;
             bottom: 0;
@@ -133,7 +125,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .card-jobtitle {
             position: absolute;
             bottom: 0;
@@ -148,7 +139,6 @@
             transform: translateX(-50%) translateY(5px);
             color: rgba(255, 255, 255, 0.8);
         }
-
         .card-main {
             position: relative;
             flex: 1;
@@ -156,12 +146,10 @@
             padding-top: 10px;
             flex-direction: column;
         }
-
         .card-content {
             padding: 25px;
             flex: 1;
         }
-
         .card-subtitle {
             font-weight: 700;
             font-size: 14px;
@@ -170,7 +158,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .card-text {
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.85);
@@ -179,7 +166,51 @@
             font-weight: 400;
             font-family: "DM Sans", sans-serif;
         }
-
+        .countdown {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        .countdown-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 5px;
+        }
+        .countdown-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4dabf7;
+        }
+        .quote-container {
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(0, 123, 255, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #007bff;
+            text-align: center;
+        }
+        .quote-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            animation: typingQuote 4s steps(40, end) 2s forwards, blink-caret-quote 0.75s step-end infinite;
+            max-width: 0;
+        }
+        @keyframes typingQuote {
+            0% { max-width: 0; }
+            100% { max-width: 100%; }
+        }
+        @keyframes blink-caret-quote {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(255, 255, 255, 0.5); }
+        }
         .card-social {
             display: flex;
             align-items: center;
@@ -188,7 +219,6 @@
             margin-bottom: 20px;
             gap: 15px;
         }
-
         .card-social a {
             color: #fff;
             height: 40px;
@@ -202,13 +232,11 @@
             border: 1px solid rgba(0, 123, 255, 0.3);
             font-size: 16px;
         }
-
         .card-social a:hover {
             background: rgba(0, 123, 255, 0.4);
             transform: translateY(-3px) scale(1.1);
             box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
         }
-
         .card-buttons {
             display: flex;
             background: rgba(0, 123, 255, 0.1);
@@ -218,7 +246,6 @@
             left: 0;
             backdrop-filter: blur(10px);
         }
-
         .card-buttons button {
             flex: 1 1 auto;
             user-select: none;
@@ -231,28 +258,23 @@
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             font-family: "Jost", sans-serif;
             font-weight: 500;
-            outline: 0;
             border-bottom: 3px solid transparent;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .card-buttons button.is-active,
         .card-buttons button:hover {
             color: #fff;
             border-bottom: 3px solid #007bff;
             background: linear-gradient(to bottom, rgba(0, 123, 255, 0) 0%, rgba(0, 123, 255, 0.2) 100%);
         }
-
         .card-section {
             display: none;
         }
-
         .card-section.is-active {
             display: block;
             animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -263,12 +285,10 @@
                 transform: translateY(0);
             }
         }
-
         .card-timeline {
             margin-top: 20px;
             position: relative;
         }
-
         .card-timeline:after {
             background: linear-gradient(to bottom, #007bff, #4dabf7, #1864ab);
             content: "";
@@ -278,7 +298,6 @@
             height: 100%;
             position: absolute;
         }
-
         .card-item {
             position: relative;
             padding-left: 60px;
@@ -286,11 +305,9 @@
             padding-bottom: 25px;
             z-index: 1;
         }
-
         .card-item:last-child {
             padding-bottom: 5px;
         }
-
         .card-item:after {
             content: attr(data-year);
             position: absolute;
@@ -306,25 +323,21 @@
             background: linear-gradient(to bottom, #4dabf7, #007bff);
             font-weight: bold;
         }
-
         .card-item-title {
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 5px;
             color: #fff;
         }
-
         .card-item-desc {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.5;
             font-family: "DM Sans", sans-serif;
         }
-
         .card-contact-wrapper {
             margin-top: 20px;
         }
-
         .card-contact {
             display: flex;
             align-items: center;
@@ -337,16 +350,13 @@
             padding: 8px;
             border-radius: 8px;
         }
-
         .card-contact:hover {
             background: rgba(0, 123, 255, 0.1);
             color: #fff;
         }
-
         .card-contact + .card-contact {
             margin-top: 12px;
         }
-
         .card-contact svg {
             flex-shrink: 0;
             width: 20px;
@@ -355,10 +365,8 @@
             transition: 0.3s;
             color: #007bff;
         }
-
         .contact-me {
             border: 0;
-            outline: none;
             background: linear-gradient(135deg, #007bff, #4dabf7);
             box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
             color: #fff;
@@ -374,12 +382,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .contact-me:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(0, 123, 255, 0.4);
         }
-
         .project-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 123, 255, 0.2);
@@ -388,46 +394,37 @@
             margin-bottom: 15px;
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
         .project-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
             border-color: rgba(0, 123, 255, 0.4);
         }
-
         .project-title {
             font-size: 16px;
             font-weight: 600;
             color: #007bff;
             margin-bottom: 8px;
         }
-
         .project-desc {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.5;
             font-family: "DM Sans", sans-serif;
             font-size: 13px;
         }
-
         .card::-webkit-scrollbar {
             width: 6px;
         }
-
         .card::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
-
         .card::-webkit-scrollbar-thumb {
             background: rgba(0, 123, 255, 0.6);
             border-radius: 3px;
         }
-
         .card::-webkit-scrollbar-thumb:hover {
             background: rgba(0, 123, 255, 0.8);
         }
-
-        /* Enhanced Pop-up Welcome Styles */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -442,12 +439,10 @@
             animation: popupFadeIn 0.8s ease-in-out;
             backdrop-filter: blur(5px);
         }
-
         @keyframes popupFadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         .popup-content {
             background: rgba(0, 123, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -459,7 +454,6 @@
             box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3), 0 30px 60px rgba(0, 123, 255, 0.2);
             transform-origin: center;
         }
-
         @keyframes popupScaleRotate {
             0% {
                 opacity: 0;
@@ -473,7 +467,6 @@
                 transform: scale(1) rotate(0deg);
             }
         }
-
         .typing-container {
             margin-bottom: 20px;
             height: 40px;
@@ -481,7 +474,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .typing-text {
             font-size: 36px;
             font-weight: 700;
@@ -494,17 +486,14 @@
             max-width: 0;
             animation-fill-mode: forwards;
         }
-
         @keyframes typing {
             0% { max-width: 0; }
             100% { max-width: 7ch; }
         }
-
         @keyframes blink-caret {
             from, to { border-color: transparent; }
             50% { border-color: #007bff; }
         }
-
         .welcome-sub {
             font-size: 18px;
             color: rgba(255, 255, 255, 0.9);
@@ -512,7 +501,6 @@
             opacity: 0;
             animation: slideInFromBottom 1s ease-in-out 1.5s forwards, pulse 2s ease-in-out 2.5s infinite;
         }
-
         @keyframes slideInFromBottom {
             0% {
                 opacity: 0;
@@ -523,12 +511,10 @@
                 transform: translateY(0) scale(1);
             }
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-
         .popup-btn {
             background: linear-gradient(135deg, #007bff, #4dabf7);
             color: white;
@@ -542,7 +528,6 @@
             animation: bounceIn 1s ease-in-out 2.5s forwards, float 3s ease-in-out infinite;
             box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
         }
-
         @keyframes bounceIn {
             0% {
                 opacity: 0;
@@ -559,59 +544,49 @@
                 transform: scale(1) translateY(0);
             }
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-5px); }
         }
-
         .popup-btn:hover {
             transform: translateY(-3px) scale(1.1);
             box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
             background: linear-gradient(135deg, #4dabf7, #007bff);
         }
-
         .popup-btn:active {
             transform: translateY(0) scale(0.95);
         }
-
         @media (max-width: 768px) {
             .card {
                 max-width: 350px;
             }
-            
             .card-content {
                 padding: 20px;
             }
-            
             .card-avatar {
                 width: 100px;
                 height: 100px;
             }
-            
             .card-fullname {
                 font-size: 20px;
             }
-
             .popup-content {
                 padding: 40px 30px;
                 margin: 20px;
             }
-
             .typing-text {
                 font-size: 28px;
             }
-
             .welcome-sub {
                 font-size: 16px;
             }
+            .quote-text {
+                font-size: 12px;
+            }
         }
-
-        /* Smooth exit animations */
         .popup-exit {
             animation: popupExit 0.6s ease-in-out forwards;
         }
-
         @keyframes popupExit {
             0% {
                 opacity: 1;
@@ -622,11 +597,9 @@
                 transform: scale(0.3) rotate(10deg);
             }
         }
-
         .popup-content-exit {
             animation: popupContentExit 0.6s ease-in-out forwards;
         }
-
         @keyframes popupContentExit {
             0% {
                 opacity: 1;
@@ -640,7 +613,6 @@
     </style>
 </head>
 <body>
-    <!-- Enhanced Pop-up Welcome -->
     <div class="popup-overlay" id="popupWelcome">
         <div class="popup-content">
             <div class="typing-container">
@@ -663,23 +635,20 @@
             <div class="card-section is-active" id="about">
                 <div class="card-content">
                     <div class="card-subtitle">About Me</div>
-                    <p class="card-text">
-                        Menjalani Hidup yang berputar setiap harinnya
-                    </p>
+                    <p class="card-text">Menjalani Hidup yang berputar setiap harinnya</p>
+                    <div class="countdown">
+                        <div class="countdown-text">Menuju ulang tahun:</div>
+                        <div class="countdown-value" id="birthdayCountdown">Menghitung...</div>
+                    </div>
+                    <div class="quote-container">
+                        <div class="quote-text">don't expect too much, humans are easy to change</div>
+                    </div>
                 </div>
                 <div class="card-social">
-                    <a href="https://wa.me/628973965618" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://whatsapp.com/channel/0029VbBPPG52f3EFT7ldeT0m" target="_blank">
-                        <i class="fas fa-broadcast-tower"></i>
-                    </a>
-                    <a href="https://github.com/FikXzModsDeveloper" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:f1kstore.gamil.1@gmail.com">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                    <a href="https://wa.me/628973965618" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VbBPPG52f3EFT7ldeT0m" target="_blank"><i class="fas fa-broadcast-tower"></i></a>
+                    <a href="https://github.com/FikXzModsDeveloper" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:f1kstore.gamil.1@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -689,10 +658,7 @@
                     <div class="card-timeline">
                         <div class="card-item" data-year="2025">
                             <div class="card-item-title">Sekolah</div>
-                            <div class="card-item-desc">
-                                Bangun Pagi Untuk bersekolah dari tk. hingga skrng
-                                yang membosnkn
-                            </div>
+                            <div class="card-item-desc">Bangun Pagi Untuk bersekolah dari tk. hingga skrng yang membosnkn</div>
                         </div>
                     </div>
                 </div>
@@ -703,10 +669,7 @@
                     <div class="card-subtitle">My Projects</div>
                     <div class="project-card">
                         <div class="project-title">Portfolio Website</div>
-                        <div class="project-desc">
-                            Website portfolio simple yang dibuat menggunakan HTML, CSS, dan JawaScript. 
-                            Menampilkan informasi personal, progress timeline, dan kontak dengan design modern.
-                        </div>
+                        <div class="project-desc">Website portfolio simple yang dibuat menggunakan HTML, CSS, dan JawaScript. Menampilkan informasi personal, progress timeline, dan kontak dengan design modern.</div>
                     </div>
                 </div>
             </div>
@@ -716,28 +679,18 @@
                     <div class="card-subtitle">Get In Touch</div>
                     <div class="card-contact-wrapper">
                         <div class="card-contact">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             Indonesia
                         </div>
                         <div class="card-contact">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             +62 897 3965 618
                         </div>
                         <div class="card-contact">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <path d="m22 6-10 7L2 6"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
                             f1kstore.gamil.1@gmail.com
                         </div>
-                        <a href="https://wa.me/628973965618" target="_blank">
-                            <button class="contact-me">Contact Me</button>
-                        </a>
+                        <a href="https://wa.me/628973965618" target="_blank"><button class="contact-me">Contact Me</button></a>
                     </div>
                 </div>
             </div>
@@ -751,7 +704,7 @@
         </div>
     </div>
 
-    <audio id="backgroundMusic" loop>
+    <audio id="backgroundMusic">
         <source src="https://files.catbox.moe/nq7eg8.mp3" type="audio/mpeg">
     </audio>
 
@@ -760,42 +713,55 @@
         const sections = document.querySelectorAll(".card-section");
         const card = document.querySelector(".card");
         const backgroundMusic = document.getElementById('backgroundMusic');
-        let musicStarted = false;
+        let musicPlayed = false;
 
-        // Enhanced close popup function with smooth animations
+        function calculateBirthdayCountdown() {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            let nextBirthday = new Date(currentYear, 11, 20);
+            
+            if (today > nextBirthday) {
+                nextBirthday.setFullYear(currentYear + 1);
+            }
+            
+            const diffTime = nextBirthday - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffMonths = Math.floor(diffDays / 30);
+            const remainingDays = diffDays % 30;
+            
+            return `${diffMonths} bulan ${remainingDays} hari lagi`;
+        }
+
+        function updateBirthdayCountdown() {
+            const countdownElement = document.getElementById('birthdayCountdown');
+            if (countdownElement) {
+                countdownElement.textContent = calculateBirthdayCountdown();
+            }
+        }
+
         function closePopup() {
             const popup = document.getElementById('popupWelcome');
             const popupContent = document.querySelector('.popup-content');
             
-            // Add exit animations
             popup.classList.add('popup-exit');
             popupContent.classList.add('popup-content-exit');
             
-            // Auto-play music when popup closes
-            if (!musicStarted) {
+            if (!musicPlayed) {
                 backgroundMusic.play()
                     .then(() => {
-                        musicStarted = true;
-                        console.log('Music started successfully');
+                        musicPlayed = true;
                     })
                     .catch(e => console.log('Music play failed:', e));
             }
             
-            // Remove popup after animation
             setTimeout(() => {
                 popup.style.display = 'none';
             }, 600);
         }
 
-        // Handle button clicks
         const handleButtonClick = e => {
             const targetSection = e.target.getAttribute("data-section");
             const section = document.querySelector(targetSection);
-            
-            if (!musicStarted) {
-                backgroundMusic.play().catch(e => console.log('Music play failed:', e));
-                musicStarted = true;
-            }
             
             targetSection !== "#about" 
                 ? card.classList.add("is-active") 
@@ -814,9 +780,8 @@
             btn.addEventListener("click", handleButtonClick);
         });
 
-        backgroundMusic.volume = 5.7;
+        backgroundMusic.volume = 0.9;
 
-        // Add keyboard support for popup
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 const popup = document.getElementById('popupWelcome');
@@ -825,6 +790,9 @@
                 }
             }
         });
+
+        updateBirthdayCountdown();
+        setInterval(updateBirthdayCountdown, 86400000);
     </script>
 </body>
 </html>
