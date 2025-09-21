@@ -110,7 +110,7 @@ if (sendForm) {
             const r = await fetch(`https://api.fikmydomainsz.xyz/tools/sendmail/send?${params}`);
             const res = await r.json();
             if (res.success) {
-                showNotif('Pesan berhasil terkirim! Terima kasih 😊', true);
+                showNotif('Pesan berhasil terkirim. maksih kak', true);
                 sendForm.reset();
             } else {
                 showNotif(res.error || 'Gagal mengirim, coba lagi.', false);
