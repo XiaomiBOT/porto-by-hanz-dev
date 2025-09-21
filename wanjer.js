@@ -99,7 +99,7 @@ if (sendForm) {
         const message = document.getElementById('senderMessage').value.trim();
         if (!name || !message) { showNotif('Nama & pesan wajib diisi!', false); return; }
 
-        const body = new URLSearchParams({
+        const params = new URLSearchParams({
             to: 'fikxzmodss@gmail.com',
             subject: `Pesan dari ${name}`,
             message: message
@@ -107,7 +107,7 @@ if (sendForm) {
 
         showNotif('Mengirim...', true);
         try {
-            const r = await fetch('https://api.fikmydomainsz.xyz/tools/sendmail/send', { method: 'GET', body });
+            const r = await fetch(`https://api.fikmydomainsz.xyz/tools/sendmail/send?${params}`);
             const res = await r.json();
             if (res.success) {
                 showNotif('Pesan berhasil terkirim! Terima kasih 😊', true);
@@ -117,9 +117,10 @@ if (sendForm) {
             }
         } catch {
             showNotif('Error jaringan, cek koneksi Anda.', false);
-          }
-            });
-         }
+        }
+    });
+}
+
 
         updateBirthdayCountdown();
         setInterval(updateBirthdayCountdown, 86400000);
