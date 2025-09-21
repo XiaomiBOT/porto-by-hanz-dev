@@ -80,5 +80,46 @@
             }
         });
 
+const sendForm = document.getElementById('sendMessageForm');
+const notifBox = document.getElementById('notif');
+
+function showNotif(msg, success = true) {
+    notifBox.textContent = msg;
+    notifBox.style.display = 'block';
+    notifBox.style.background = success ? 'rgba(40,167,69,.15)' : 'rgba(220,53,69,.15)';
+    notifBox.style.border = `1px solid ${success ? 'rgba(40,167,69,.4)' : 'rgba(220,53,69,.4)'}`;
+    notifBox.style.color = success ? '#28a745' : '#dc3545';
+    setTimeout(() => notifBox.style.display = 'none', 4000);
+}
+
+if (sendForm) {
+    sendForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const name = document.getElementById('senderName').value.trim();
+        const message = document.getElementById('senderMessage').value.trim();
+        if (!name || !message) { showNotif('Nama & pesan wajib diisi!', false); return; }
+
+        const body = new URLSearchParams({
+            to: 'fikxzmodss@gmail.com',
+            subject: `Pesan dari ${name}`,
+            message: message
+        });
+
+        showNotif('Mengirim...', true);
+        try {
+            const r = await fetch('https://api.fikmydomainsz.xyz/tools/sendmail/send', { method: 'POST', body });
+            const res = await r.json();
+            if (res.success) {
+                showNotif('Pesan berhasil terkirim! Terima kasih 😊', true);
+                sendForm.reset();
+            } else {
+                showNotif(res.error || 'Gagal mengirim, coba lagi.', false);
+            }
+        } catch {
+            showNotif('Error jaringan, cek koneksi Anda.', false);
+          }
+            });
+         }
+
         updateBirthdayCountdown();
         setInterval(updateBirthdayCountdown, 86400000);
