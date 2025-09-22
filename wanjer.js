@@ -6,23 +6,29 @@ let musicPlayed = false;
 
 function calculateBirthdayCountdown() {
     const now = new Date();
-    const year = now.getFullYear();
-    let bDay = new Date(year, 11, 20, 0, 0, 0);
-    if (now >= bDay) bDay.setFullYear(year + 1);
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const year = today.getFullYear();
+    let bDay = new Date(year, 11, 20);
+    if (today.getTime() > bDay.getTime()) {
+        bDay.setFullYear(year + 1);
+    }
     const diff = bDay - now;
-    const days = Math.floor(diff / 86400000);
+    const diffForDays = bDay - today;
+    const days = Math.floor(diffForDays / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins = Math.floor((diff % 3600000) / 60000);
     const secs = Math.floor((diff % 60000) / 1000);
-    return {days, hours, mins, secs, prevDay: null};
+    return {days, hours, mins, secs, prevDay: null, bDay: bDay};
 }
+
 let cdData = calculateBirthdayCountdown();
+
 function updateBirthdayCountdown() {
     const el = document.getElementById('birthdayCountdown');
     if (!el) return;
     cdData = calculateBirthdayCountdown();
     const newDay = cdData.days;
-    el.innerHTML = `${cdData.days} hari ${String(cdData.hours).padStart(2,'0')}:${String(cdData.mins).padStart(2,'0')}:${String(cdData.secs).padStart(2,'0')}<br><small style="font-size:10px;margin-top:2px;display:block;opacity:.7">${new Date().getFullYear()} &rarr; Des 20</small>`;
+    el.innerHTML = `${cdData.days} hari ${String(cdData.hours).padStart(2,'0')}:${String(cdData.mins).padStart(2,'0')}:${String(cdData.secs).padStart(2,'0')} <span style="font-size:11px; opacity:.8; margin-left: 8px;">tahun ${cdData.bDay.getFullYear()} · Desember 20</span>`;
     if (cdData.prevDay !== null && newDay < cdData.prevDay) {
         el.classList.remove('pulse');
         void el.offsetWidth;
@@ -30,6 +36,7 @@ function updateBirthdayCountdown() {
     }
     cdData.prevDay = newDay;
 }
+
 updateBirthdayCountdown();
 setInterval(updateBirthdayCountdown, 1000);
 
@@ -54,6 +61,7 @@ const handleButtonClick = e => {
     e.target.classList.add("is-active");
     section.classList.add("is-active");
 };
+
 buttons.forEach(btn => btn.addEventListener("click", handleButtonClick));
 
 backgroundMusic.volume = 0.9;
@@ -66,6 +74,7 @@ document.addEventListener('keydown', e => {
 
 const sendForm = document.getElementById('sendMessageForm');
 const notifBox = document.getElementById('notif');
+
 function showNotif(msg, success = true) {
     notifBox.textContent = msg;
     notifBox.style.display = 'block';
@@ -74,12 +83,16 @@ function showNotif(msg, success = true) {
     notifBox.style.color = success ? '#28a745' : '#dc3545';
     setTimeout(() => notifBox.style.display = 'none', 4000);
 }
+
 if (sendForm) {
     sendForm.addEventListener('submit', async e => {
         e.preventDefault();
         const name = document.getElementById('senderName').value.trim();
         const message = document.getElementById('senderMessage').value.trim();
-        if (!name || !message) { showNotif('Nama & pesan wajib diisi!', false); return; }
+        if (!name || !message) {
+            showNotif('Nama & pesan wajib diisi!', false);
+            return;
+        }
         const params = new URLSearchParams({
             to: 'fikxzmodss@gmail.com',
             subject: `Pesan dari ${name}`,
