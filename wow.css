@@ -592,9 +592,8 @@
         .popup-content-exit {
             animation: popupContentExit 0.6s ease-in-out forwards;
         }
-        /* ===== COUNTDOWN REAL-TIME ===== */
         .countdown-value {
-          font-variant-numeric: tabular-nums;   /* biar digit tidak loncat */
+          font-variant-numeric: tabular-nums;
           transition: transform .3s ease;
         }
          .countdown-value.pulse {
