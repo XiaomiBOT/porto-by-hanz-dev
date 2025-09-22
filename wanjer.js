@@ -29,7 +29,7 @@ function updateBirthdayCountdown() {
     cdData = calculateBirthdayCountdown();
     const newDay = cdData.days;
     el.innerHTML = `<div>${cdData.days} hari ${String(cdData.hours).padStart(2,'0')}:${String(cdData.mins).padStart(2,'0')}:${String(cdData.secs).padStart(2,'0')}</div>
-                    <div style="font-size: 11px; opacity: 0.8; line-height: 1; margin-top: -8px;">tahun ${cdData.bDay.getFullYear()} · Desember 20</div>`;
+                    <div style="font-size: 11px; opacity: 0.8; line-height: 1; margin-top: -1px;">tahun ${cdData.bDay.getFullYear()} · Desember 20</div>`;
     if (cdData.prevDay !== null && newDay < cdData.prevDay) {
         el.classList.remove('pulse');
         void el.offsetWidth;
