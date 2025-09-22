@@ -180,7 +180,8 @@
             font-size: 16px;
             font-weight: 600;
             color: #4dabf7;
-            margin-top: -8px;    
+            margin-top: -1px;  
+            line-height: 1.2;
         }
         .quote-container {
             margin-top: 20px;
