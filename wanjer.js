@@ -8,7 +8,7 @@ function calculateBirthdayCountdown() {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const year = today.getFullYear();
-    let bDay = new Date(year, 4, 7);
+    let bDay = new Date(year, 2, 7);
     if (today.getTime() > bDay.getTime()) {
         bDay.setFullYear(year + 1);
     }
