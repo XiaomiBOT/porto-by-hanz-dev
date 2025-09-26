@@ -95,7 +95,7 @@ if (sendForm) {
             return;
         }
         const params = new URLSearchParams({
-            to: 'fikxzmodss@gmail.com',
+            to: 'hanzstoryyy@gmail.com',
             subject: `Pesan dari ${name}`,
             message: message
         });
